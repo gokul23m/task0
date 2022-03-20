@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>num guess</title>
+       <style>
+           body{
+    background-color: blueviolet;
+}
+div{
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    min-width: 580px;
+    margin: 20px 50px 0px 50px;
+    padding: 50px 100px;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    transform: translate(-50%,-50%);
+    position: absolute;
+}
+  
+p{
+    font-weight: 400;
+}
+h2{
+    font-weight: 600;
+    padding: 0px 0px 10px 0 ;
+}
+input{
+    width: 90px;
+    padding: 20px 0;
+    border:1px solid red;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    border-radius: 10px;
+    color: blue;
+    font-size: 25px;
+    text-align: center;
+    overflow: hidden;
+    align-items: center;
+    display: block;
+    margin: auto;
+   
+}
+button{
+    width: 160px;
+    background-color: yellow;
+    color: black;
+    margin:20px 0px;
+    padding: 15px 0px;
+    border-radius: 5px;
+    display: block;
+    margin: auto;
+    font-weight: 600;
+    font-size: 20px;
+}
+button:hover{
+        opacity: 0.5;
+        border-color: deeppink;
+}
+       </style>
+    </head>
+    <body>
+        <div>
+
+            <h2> I am finding an number between 1 to 100</h2>
+            <h2>Can you guess it</h2>
+            <input type="text" placeholder="NUM" id="guess">
+            <button onclick="play()" id="mybtn">Guess</button>
+            <p id="msg1"></p>
+            <p id="msg2"></p>
+            <p id="msg3"></p>
+            <p><a href="Javascript:close();">close</a></p>
+        </div>
+        <script >
+            var m1 = document.getElementById("msg1");
+var m2 = document.getElementById("msg2");
+var m3 = document.getElementById("msg3");
+var answer=Math.floor(Math.random()*100 )+ 1;
+
+var noofguesses =0;
+var guessesnum=[];
+
+function play(){
+    const userguess=document.getElementById("guess").value;
+    if(userguess<1 || userguess>100){
+        alert("please enter a number between 1 and 100");
+    }
+
+    else{
+        guessesnum.push(userguess);
+        noofguesses +=1;
+
+        if(userguess < answer){
+            m1.textContent="your guessed number is too low";
+            m2.textContent="no of guesses :"+noofguesses;
+            m3.textContent="Guessed number are:"+guessesnum;
+        }
+        
+        else if(userguess > answer){
+            m1.textContent="your guessed number is too high";
+            m2.textContent="no of guesses :"+noofguesses;
+            m3.textContent="Guessed number are:"+guessesnum;
+        }
+
+        
+        else if(userguess == answer){
+            m1.textContent="you won it";
+            m2.textContent="the number was answer"+answer;
+            m3.textContent="you guessed it in "+noofguesses+"guesses";
+        }
+
+    }
+}
+        </script>
+    </body>
+</html>
